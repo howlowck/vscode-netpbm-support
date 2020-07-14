@@ -1,0 +1,32 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Netpbm Bitmap Image",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.other.magic",
+				"match": "\\b(P1)\\b"
+			}]
+		},
+		"comments": {
+			"name": "comment.line.number-sign",
+			"match": "(#.*)$"
+		},
+		"strings": {
+			"name": "constant.numeric.pbm",
+			"match": "\\b(\\d+)\\b"
+		}
+	},
+	"scopeName": "source.pbm"
+}

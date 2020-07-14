@@ -1,0 +1,45 @@
+{
+    "name": "ppm-support",
+    "displayName": "ppm-support",
+    "description": "PPM Support for VSCode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "ppm",
+            "aliases": ["Netpbm Pixmap Image", "ppm"],
+            "extensions": [".ppm"],
+            "configuration": "./language-configuration.json"
+        }, {
+            "id": "pgm",
+            "aliases": ["Netpbm Grayscale Image", "pgm"],
+            "extensions": [".pgm"],
+            "configuration": "./language-configuration.json"
+        }, {
+            "id": "pbm",
+            "aliases": ["Netpbm Bitmap Image", "pbm"],
+            "extensions": [".pbm"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "ppm",
+            "scopeName": "source.ppm",
+            "path": "./syntaxes/ppm.tmLanguage.json"
+        },
+        {
+            "language": "pgm",
+            "scopeName": "source.pgm",
+            "path": "./syntaxes/pgm.tmLanguage.json"
+        },
+        {
+            "language": "pbm",
+            "scopeName": "source.pbm",
+            "path": "./syntaxes/pbm.tmLanguage.json"
+        }]
+    }
+}
