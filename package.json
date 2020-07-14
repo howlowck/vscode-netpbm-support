@@ -1,7 +1,7 @@
 {
-    "name": "ppm-support",
-    "displayName": "ppm-support",
-    "description": "PPM Support for VSCode",
+    "name": "netpbm-support",
+    "displayName": "netpbm-support",
+    "description": "Netpbm Support for VSCode",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.47.0"
