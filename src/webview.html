@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Netpbm Preview</h1>
+    <canvas id="image"></canvas>
+    <script>
+        const canvasEl = document.querySelector('#image')
+        const ctx = canvasEl.getContext('2d')
+        window.addEventListener('message', event => {
+            const message = event.data; // The JSON data our extension sent
+            const {command} = message;
+            if (command === 'setImage') {
+                const {payload: {dimension, rgba}} = message;
+                canvasEl.width = width
+                canvasEl.height = height
+                console.log(width, height, rgba)
+                const data = new ImageData(rgba, width, height)
+                ctx.putImageData(data, 0, 0)
+            }
+        });
+    </script>
+</body>
+</html>

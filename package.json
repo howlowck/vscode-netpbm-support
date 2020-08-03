@@ -2,44 +2,147 @@
     "name": "netpbm-support",
     "displayName": "netpbm-support",
     "description": "Netpbm Support for VSCode",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "engines": {
         "vscode": "^1.47.0"
     },
+    "main": "./out/extension",
     "categories": [
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "ppm",
-            "aliases": ["Netpbm Pixmap Image", "ppm"],
-            "extensions": [".ppm"],
-            "configuration": "./language-configuration.json"
-        }, {
-            "id": "pgm",
-            "aliases": ["Netpbm Grayscale Image", "pgm"],
-            "extensions": [".pgm"],
-            "configuration": "./language-configuration.json"
-        }, {
-            "id": "pbm",
-            "aliases": ["Netpbm Bitmap Image", "pbm"],
-            "extensions": [".pbm"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "ppm",
-            "scopeName": "source.ppm",
-            "path": "./syntaxes/ppm.tmLanguage.json"
+        "languages": [
+            {
+                "id": "ppm",
+                "aliases": [
+                    "Netpbm Pixmap Image",
+                    "ppm"
+                ],
+                "extensions": [
+                    ".ppm"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "pgm",
+                "aliases": [
+                    "Netpbm Grayscale Image",
+                    "pgm"
+                ],
+                "extensions": [
+                    ".pgm"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "pbm",
+                "aliases": [
+                    "Netpbm Bitmap Image",
+                    "pbm"
+                ],
+                "extensions": [
+                    ".pbm"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "ppm",
+                "scopeName": "source.ppm",
+                "path": "./syntaxes/ppm.tmLanguage.json"
+            },
+            {
+                "language": "pgm",
+                "scopeName": "source.pgm",
+                "path": "./syntaxes/pgm.tmLanguage.json"
+            },
+            {
+                "language": "pbm",
+                "scopeName": "source.pbm",
+                "path": "./syntaxes/pbm.tmLanguage.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "netpbm-support.openPreviewToSide",
+                "title": "Open Preview To Side",
+                "category": "Netpbm",
+                "icon": {
+                    "light": "./media/preview-right-light.svg",
+                    "dark": "./media/preview-right-dark.svg"
+                }
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Netpbm (PBM/PGM/PPM) Support",
+            "properties": {
+                "netpbm-support.configPath": {
+                    "description": "The configuration directory path. Leave it empty to use '~/.netpbm' as the config path.",
+                    "default": "",
+                    "type": "string"
+                }
+            }
         },
-        {
-            "language": "pgm",
-            "scopeName": "source.pgm",
-            "path": "./syntaxes/pgm.tmLanguage.json"
-        },
-        {
-            "language": "pbm",
-            "scopeName": "source.pbm",
-            "path": "./syntaxes/pbm.tmLanguage.json"
-        }]
+        "keybindings": [
+            {
+                "command": "netpbm-support.openPreviewToSide",
+                "key": "ctrl+shift+v",
+                "mac": "cmd+shift+v",
+                "when": "editorLangId == ppm"
+            },
+            {
+                "command": "netpbm-support.openPreviewToSide",
+                "key": "ctrl+shift+v",
+                "mac": "cmd+shift+v",
+                "when": "editorLangId == pgm"
+            },
+            {
+                "command": "netpbm-support.openPreviewToSide",
+                "key": "ctrl+shift+v",
+                "mac": "cmd+shift+v",
+                "when": "editorLangId == pbm"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "netpbm-support.openPreviewToSide",
+                    "when": "editorLangId == ppm",
+                    "group": "navigation"
+                },
+                {
+                    "command": "netpbm-support.openPreviewToSide",
+                    "when": "editorLangId == pgm",
+                    "group": "navigation"
+                },
+                {
+                    "command": "netpbm-support.openPreviewToSide",
+                    "when": "editorLangId == pbm",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "activationEvents": [
+        "onLanguage:ppm",
+        "onLanguage:pbm",
+        "onLanguage:pgm",
+        "onCommand:netpbm-support.openPreviewToSide"
+    ],
+    "dependencies": {
+        "netpbm-parser": "^1.1.7",
+        "vscode": "^1.1.37"
+    },
+    "devDependencies": {
+        "@types/node": "^14.0.26",
+        "typescript": "^3.9.6"
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "eslint . --ext .ts,.tsx",
+        "watch": "tsc -watch -p ./"
     }
 }
